@@ -3,17 +3,6 @@
 <link rel="stylesheet" href="style.css">
 <head>
   <title>invisiblematerial</title>
-  <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-  <py-env>
-      - numpy
-      - matplotlib
-      - math
-    </py-env>
-  <title>PyScript Playground</title>
 </head>
 <body >
   <h1>Introduction</h1>
@@ -83,85 +72,5 @@ normal materials and therefore never reaches our eyes.</p>
 https://www.sciencedirect.com/science/article/pii/S1631070509000243, author = Ben Wood, keywords = Metamaterials, Invisibility,
 Cloaking, Métamatériaux, Invisibilité, Capes d’invisibilité,
 </p>
- <main class="py-5 grid gap-y-4 grid-cols-1 place-items-center">
-  <py-button id="graph-button" label="play"></py-button>
-      <div id="graph-container"></div>
- </main>
-<py-script>
-import math
-import matplotlib.pyplot as plt
-import matplotlib.pyplot as plot
-from matplotlib import animation,rc
-from IPython.display import HTML
-rc('animation', html='jshtml')
-n1=1
-n2=-3
-def line(sita,b):
-    line1=[]
-    linex=[0.02*i for i in range(100)]
-    for i in range(100):
-        y=math.tan(sita)*i*0.02+b
-        c=-(50*b)/(math.tan(sita))
-        if y>0:
-            line1.append(y)
-        if y<0:
-            y1=0.02*(i-c)*n1*math.sin(sita)/(n2*(math.sqrt(1-((n1/n2)*math.sin(sita))**2)))
-            line1.append(y1)
-    return plt.plot(linex,line1,color='red')
-def line2_1(sita,b):
-        line1=[]
-        line2=[]
-        linex1=[]
-        linex2=[]
-        for i in range(100):
-            y=math.tan(sita)*i*0.02+b
-            c=-(50*b)/(math.tan(sita))
-            if y>0:
-                line1.append(y)          
-                linex1.append(0.02*i)
-            y1=0.02*(i)*n1*math.sin(sita)/(n2*(math.sqrt(1-((n1/n2)*math.sin(sita))**2)))
-            line2.append(y1)
-            linex2.append(0.02*(i+c))
-        return  plt.plot(linex1,line1,color='red')
-def line2_2(sita,b):
-        line1=[]
-        line2=[]
-        linex1=[]
-        linex2=[]
-        for i in range(100):
-            y=math.tan(sita)*i*0.02+b
-            c=-(50*b)/(math.tan(sita))
-            if y>0:
-                line1.append(y)          
-                linex1.append(0.02*i)
-            y1=0.02*(i)*n1*math.sin(sita)/(n2*(math.sqrt(1-((n1/n2)*math.sin(sita))**2)))
-            line2.append(y1)
-            linex2.append(0.02*(i+c))
-        return  plt.plot(linex2,line2,color='red')
-linebound=[0 for t in range(100)]
-linex=[0.01*i+1 for i in range(100)]
-fig,ax=plt.subplots()#Artistオブジェクトの取得
-plt.xlim(1.4, 1.8)
-plt.ylim(-0.2,0.2)
-history1=[]
-plot1=plt.plot(linex,linebound,color='blue')
-if n2>0:
-    for s in range (100):
-        history=[]
-        history=history+plot1
-        for i in range(20):
-            history=history+line(math.pi/6,-0.1-0.1*i-0.01*s)
-        history1.append(history)       
-else:
-    for s in range(100):
-        history=[]
-        history=history+plot1
-        for i in range(20):
-            history=history+line2_1(math.pi/6,-0.1-0.1*i-0.01*s)+line2_2(math.pi/6,-0.1-0.1*i+0.01*s)
-        history1.append(history)         
-linebound=[0 for t in range(100)]
-anim=animation.ArtistAnimation(fig,history1,interval=100)
-plot.show()
-    </py-script>
 </body>
 </html>
