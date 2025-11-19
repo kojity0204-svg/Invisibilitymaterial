@@ -2,6 +2,9 @@ body {
    background-image: url("news.mit.edu.png");
  
 }
+p {
+  color: #ccc;
+}
 
 
 
